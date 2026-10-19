@@ -1,8 +1,10 @@
 use ark_bn254::{Fr, G1Projective};
 use ark_ec::Group;
 use core::ops::{Add, Mul};
+
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub struct G1(pub G1Projective);
+
 impl G1 {
     pub fn identity() -> Self {
         Self(G1Projective::identity())
@@ -17,12 +19,14 @@ impl G1 {
         self.0.into()
     }
 }
+
 impl Add for G1 {
     type Output = Self;
     fn add(self, rhs: Self) -> Self {
         Self(self.0 + rhs.0)
     }
 }
+
 impl Mul<Fr> for G1 {
     type Output = Self;
     fn mul(self, rhs: Fr) -> Self {
